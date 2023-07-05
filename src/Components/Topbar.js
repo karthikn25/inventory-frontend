@@ -1,10 +1,10 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useNavigate } from 'react-router-dom/'
 import {Link} from 'react-router-dom'
 import { Col, Container, Row } from 'react-bootstrap';
 
 export default function Topbar() {
-  const history = useHistory("");
+  const navigate = useNavigate("");
   
   return (
     
@@ -26,7 +26,7 @@ export default function Topbar() {
         
       </ul>
       <form className="d-flex" role="search" style={{marginLeft:'250px'}}>
-        <button className="btn btn-outline-danger" onClick={()=>history.push("/login")}>LogOut</button>
+        <button className="btn btn-outline-danger" onClick={()=>navigate("/login")}>LogOut</button>
       </form>
     </div>
     </Col>

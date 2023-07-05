@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useNavigate } from 'react-router-dom/';
+
 
 export default function Addinventory({inventory,setInventory}) {
   const [name,setName]=useState("");
@@ -8,7 +9,7 @@ export default function Addinventory({inventory,setInventory}) {
   const [department,setDepartment]=useState("");
   const [amount,setAmount]=useState("");
   const [date,setDate]=useState("");
-  const history=useHistory("");
+  const navigate=useNavigate();
   
   const createInventory = async () =>{
       const newInventory={
@@ -30,11 +31,12 @@ export default function Addinventory({inventory,setInventory}) {
       })
     const data=await response.json()
    setInventory([...inventory,data])
-   history.push("/home");
+   navigate("/home");
    }
   
   return (
     <Container>
+    
     <Row>
     <Col>
     <section className='add-inventory'>

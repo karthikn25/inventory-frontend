@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
-  const history = useHistory("");
+  const navigate = useNavigate();
 
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
@@ -22,10 +22,8 @@ export default function Login() {
         }
        });
        const data = await res.json();
-      localStorage.setItem("token",data.token)
-      history.push("/home")
-      console.log(data.token)
-      console.log(userInfo)
+      localStorage.setItem("token",data.data.token)
+      navigate("/home")
      
   }
  

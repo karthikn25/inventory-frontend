@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link,useHistory } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { Col, Container, Row } from 'react-bootstrap'
 
 export default function SignUp() {
   const [userName,setUSerName] = useState("");
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
-  const history = useHistory("");
+  const navigate = useNavigate("");
   const handleSignUp = async ()=>{
     const userInfo = {
       userName,
@@ -24,7 +24,7 @@ export default function SignUp() {
        localStorage.setItem("username",data.userName)
        localStorage.setItem("email",data.email)
        localStorage.setItem("password",data.hashedPassword)
-       history.push("/login")
+       navigate("/login")
        console.log(data);
        console.log(userInfo);
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -13,7 +13,7 @@ export default function UpdateInventory({inventory,setInventory}) {
     const [department,setDepartment]=useState("");
     const [amount,setAmount]=useState("");
     const [date,setDate]=useState("");
-    const history=useHistory("");
+    const navigate=useNavigate("");
     useEffect(()=>{
       setName(editInventory.name)
       setType(editInventory.type)
@@ -50,7 +50,7 @@ export default function UpdateInventory({inventory,setInventory}) {
         console.log(updatedObject)
         inventory[id]=updatedObject
         setInventory([...inventory])
-        history.push("/home") 
+        navigate("/home") 
        }}
   
     return (

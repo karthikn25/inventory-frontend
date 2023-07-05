@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import { Switch } from 'react-router-dom/';
+import { Routes } from 'react-router-dom/';
 import './App.css';
 import { Route } from 'react-router-dom/';
 import SignUp from './Components/SignUp';
@@ -10,61 +10,65 @@ import Topbar from './Components/Topbar';
 import Addinventory from './Components/Addinventory';
 import UpdateInventory from './Components/UpdateInventory';
 import Nopage from './Components/Nopage';
+import { useNavigate } from 'react-router-dom';
 
 
 function App() {
   const [inventory,setInventory]=useState([]);
   const [editInventory,setEditInventory]=useState({})
+
+  const navigate = useNavigate("");
   useEffect(()=>{
     const getInventory= async ()=>{
     const response=await fetch("https://inventory-mh4w.onrender.com/inventory/all",{
       method:"GET",
+      headers:{
+        "x-auth-token":localStorage.getItem("token")
+      }
     });
     const data=await response.json();
     if(data){
-      setInventory(data)
+      setInventory(data.data)
     }
     }
-    getInventory();
-    },[])
+    if(!localStorage.getItem("token")){
+      navigate("/login")
+    }else{
+      getInventory();
+    }
+     },[])
   
   return (
     <div className="App">
-    <Switch>
-    <Route exact path="/">
-    <SignUp/>
-    </Route>
-    <Route path="/login">
-    <LogIn/>
-    </Route>
-    <Route path="/forget-password">
-    <ForgetPassword/>
-    </Route>
-    <Route path="/home">
-    <Topbar/>
-    <Home
+    <Routes>
+    <Route exact path="/" element ={<SignUp/>}/>
+    
+    <Route path="/login" element ={ <LogIn/>}/>
+    
+    <Route path="/forget-password" element ={<ForgetPassword/>}/>
+    
+    <Route path="/home" element ={<div><Topbar/> <Home
     inventory={inventory}
     setInventory={setInventory}
     setEditInventory={setEditInventory}
-    />
-    </Route>
-    <Route path="/add">
-    <Topbar/>
-    <Addinventory
+    /></div>
+   
+    }/>
+      
+    <Route path="/add" element ={<div><Topbar/>  <Addinventory
     inventory={inventory}
     setInventory={setInventory}
-    />
-    </Route>
-    <Route path="/edit/:id">
-    <Topbar/>
-    <UpdateInventory
-    editInventory={editInventory}
-    />
-    </Route>
-    <Route path="/*">
-    <Nopage/>
-    </Route>
-    </Switch>
+    /></div>
+    
+      }/>
+      <Route path="/edit/:id" element ={<div><Topbar/> <UpdateInventory
+      editInventory={editInventory}
+      /></div>
+     
+        }/>
+   
+    <Route path="/*" element ={<Nopage/>}/>
+    </Routes>
     </div>
   );
 }
