@@ -33,7 +33,7 @@ export default function UpdateInventory({inventory,setInventory}) {
           date : date
         }
        
-      const response=await fetch(`*/${editInventory.id}`,{
+      const response=await fetch(`https://inventory-mh4w.onrender.com/inventory/edit/${editInventory.id}`,{
         method:"PUT",
         body:JSON.stringify(updatedObject),
         headers:{

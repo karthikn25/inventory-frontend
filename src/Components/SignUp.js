@@ -13,7 +13,7 @@ export default function SignUp() {
       email,
       password,
      }
-     const res = await fetch('http://localhost:9090/api/auth/signup',{
+     const res = await fetch('https://inventory-mh4w.onrender.com/users/signup',{
         method:'POST',
         body:JSON.stringify(userInfo),
         headers:{

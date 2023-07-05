@@ -15,7 +15,7 @@ export default function Home({inventory,setInventory}) {
   const history=useHistory("");
   const deleteInventory =async (delId)=>{
     console.log(delId)
-     const response=await fetch(`*/${delId}` , {
+     const response=await fetch(`https://inventory-mh4w.onrender.com/inventory/delete/${delId}` , {
       method:"DELETE"
       
      });

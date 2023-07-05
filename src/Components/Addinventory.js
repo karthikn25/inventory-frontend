@@ -21,7 +21,7 @@ export default function Addinventory({inventory,setInventory}) {
     
     
     
-    const response=await fetch("",{
+    const response=await fetch("https://inventory-mh4w.onrender.com/inventory/add",{
         method:"POST",
         body:JSON.stringify(newInventory),
         headers:{

@@ -14,7 +14,7 @@ export default function Login() {
         email,
         password,
        }
-       const res = await fetch('http://localhost:9090/api/auth/login',{
+       const res = await fetch('https://inventory-mh4w.onrender.com/users/login',{
         method:'POST',
         body:JSON.stringify(userInfo),
         headers:{

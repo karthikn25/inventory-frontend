@@ -9,6 +9,7 @@ import LogIn from './Components/Login';
 import Topbar from './Components/Topbar';
 import Addinventory from './Components/Addinventory';
 import UpdateInventory from './Components/UpdateInventory';
+import Nopage from './Components/Nopage';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
   const [editInventory,setEditInventory]=useState({})
   useEffect(()=>{
     const getInventory= async ()=>{
-    const response=await fetch("*",{
+    const response=await fetch("https://inventory-mh4w.onrender.com/inventory/all",{
       method:"GET",
     });
     const data=await response.json();
@@ -59,6 +60,9 @@ function App() {
     <UpdateInventory
     editInventory={editInventory}
     />
+    </Route>
+    <Route path="/*">
+    <Nopage/>
     </Route>
     </Switch>
     </div>
